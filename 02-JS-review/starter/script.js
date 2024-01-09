@@ -1,4 +1,5 @@
 const { count } = require("console");
+const { json } = require("stream/consumers");
 
 const data = [
   {
@@ -221,39 +222,90 @@ const book = getBook(2);
 
 // console.log(getTotalReviewCount(book));
 
-function getTotalReviewCount(book) {
-  const goodreads = book.reviews?.goodreads?.reviewsCount;
-  const librarything = book.reviews?.librarything?.reviewsCount ?? 0;
+// function getTotalReviewCount(book) {
+//   const goodreads = book.reviews?.goodreads?.reviewsCount;
+//   const librarything = book.reviews?.librarything?.reviewsCount ?? 0;
 
-  return goodreads + librarything;
+//   return goodreads + librarything;
+// }
+
+// const books = getBooks();
+// books;
+
+// const x = [1, 2, 3, 4, 5].map((el) => el * 2);
+// console.log(x);
+
+// const titles = books.map((book) => book.title);
+// titles;
+
+// // Map
+// const essentialData = books.map((book) => ({
+//   title: book.title,
+//   author: book.author,
+//   reviewsCount: getTotalReviewCount(book),
+// }));
+// essentialData;
+
+// const longBooks = books
+//   .filter((book) => book.pages > 500)
+//   .filter((book) => book.hasMovieAdaptation);
+// longBooks;
+
+// // Filter
+// const adventureBooks = books
+//   .filter((books) => books.genres.includes("adventure"))
+//   .map((book) => book.title);
+// adventureBooks;
+
+// // Reduce
+// // acc = current value of final value
+// const pagesAllBooks = books.reduce((sum, book) => sum + book.pages, 0);
+// pagesAllBooks;
+
+// // Sorted
+// const arr = [3, 7, 1, 9, 6];
+// const sorted = arr.slice().sort((a, b) => a - b);
+// sorted;
+// arr;
+
+// const sortedByPages = books.slice().sort((a, b) => b.pages - a.pages);
+// sortedByPages;
+
+// // 1) add book object to array
+// const newBook = {
+//   id: 6,
+//   title: "Harry Potter and the Chamber of secrets",
+//   author: "J.K. Rowling",
+// };
+
+// const booksAfterAdd = [...books, newBook];
+// booksAfterAdd;
+
+// // 2) Delete a book from array
+// const booksAfterDelete = booksAfterAdd.filter((book) => book.id !== 3);
+// booksAfterDelete;
+
+// // 3) Update book object while in the array
+// const booksAfterUpdate = booksAfterDelete.map((book) =>
+//   book.id === 1 ? { ...book, pages: 1210 } : book
+// );
+// booksAfterUpdate;
+
+// fetch("https://jsonplaceholder.typicode.com/todos")
+//   .then((res) => res.json())
+//   .then((data) => console.log(data));
+
+// console.log("justin");
+
+async function getTodos() {
+  const res = await fetch("https://jsonplaceholder.typicode.com/todos");
+  const data = await res.json();
+  console.log(data);
+
+  return data;
 }
 
-const books = getBooks();
-books;
+const todos = getTodos;
+getTodos();
 
-const x = [1, 2, 3, 4, 5].map((el) => el * 2);
-console.log(x);
-
-const titles = books.map((book) => book.title);
-titles;
-
-const essentialData = books.map((book) => ({
-  title: book.title,
-  author: book.author,
-  reviewsCount: getTotalReviewCount(book),
-}));
-essentialData;
-
-const longBooks = books
-  .filter((book) => book.pages > 500)
-  .filter((book) => book.hasMovieAdaptation);
-longBooks;
-
-const adventureBooks = books
-  .filter((books) => books.genres.includes("adventure"))
-  .map((book) => book.title);
-adventureBooks;
-
-// acc = current value of final value
-const pagesAllBooks = books.reduce((sum, book) => sum + book.pages, 0);
-pagesAllBooks;
+console.log(todos);
